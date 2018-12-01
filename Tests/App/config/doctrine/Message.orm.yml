@@ -1,0 +1,8 @@
+Kna\MQTransactionBundle\Tests\App\Entity\Message:
+  type: entity
+
+  id:
+    id:
+      type: guid
+      generator:
+        strategy: UUID
