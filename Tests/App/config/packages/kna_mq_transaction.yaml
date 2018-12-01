@@ -1,3 +1,4 @@
 kna_mq_transaction:
+  enable_logger: true
   message:
     class: Kna\MQTransactionBundle\Tests\App\Entity\Message
