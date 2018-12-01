@@ -61,8 +61,7 @@ class SendMessagesCommand extends Command
         if (!$name) {
             $name = $this->container->getParameter('kna_mq_transaction.default_producer');
         }
-
-        return $this->getProducer('old_sound_rabbit_mq.' . $name . '_producer');
+        return $this->container->get('old_sound_rabbit_mq.' . $name . '_producer');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
