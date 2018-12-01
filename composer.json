@@ -6,9 +6,9 @@
         "psr-4" : { "Kna\\MQTransactionBundle\\" : "" }
     },
     "autoload-dev": {
-      "psr-4": {
-        "Kna\\MQTransactionBundle\\Tests\\App\\": "Tests/App/src/"
-      }
+        "psr-4": {
+            "Kna\\MQTransactionBundle\\Tests\\App\\": "Tests/App/src/"
+        }
     },
     "license": "MIT",
     "authors": [
@@ -19,7 +19,10 @@
     ],
     "require": {
         "php": "^7.2",
-        "symfony/framework-bundle": "^4.0"
+        "symfony/framework-bundle": "^4.0",
+        "php-amqplib/rabbitmq-bundle": "^1.14",
+        "doctrine/doctrine-bundle": "^1.10",
+        "doctrine/orm": "^2.6"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^4.2"
