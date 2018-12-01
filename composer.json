@@ -1,0 +1,19 @@
+{
+    "name": "kna/mq-transaction-bundle",
+    "description": "This package provides transaction implementation for RabbitMQ using Doctrine",
+    "type": "symfony-bundle",
+    "autoload" : {
+        "psr-4" : { "Kna\\MQTransactionBundle\\" : "" }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Klim Naydenov",
+            "email": "knaydenov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "symfony/framework-bundle": "^4.0"
+    }
+}

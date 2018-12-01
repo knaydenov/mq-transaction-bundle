@@ -1,0 +1,1 @@
+<?phpnamespace Kna\MQTransactionBundle;use Symfony\Component\DependencyInjection\ContainerBuilder;use Symfony\Component\HttpKernel\Bundle\Bundle;class KnaMQTransactionBundle extends Bundle{    public function build(ContainerBuilder $container): void    {    }}
