@@ -8,5 +8,9 @@
             <argument type="service" id="service_container" />
             <tag name="console.command" command="mq-transaction:send" />
         </service>
+        <service id="kna_mq_transaction.message_manager" class="Kna\MQTransactionBundle\Model\MessageManager">
+            <argument type="service" id="service_container" />
+        </service>
+        <service id="Kna\MQTransactionBundle\Model\MessageManager" alias="kna_mq_transaction.message_manager" public="true" />
     </services>
 </container>
