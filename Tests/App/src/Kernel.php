@@ -1,6 +1,6 @@
 <?php
 
-namespace Kna\MQTransaction\Tests\App;
+namespace Kna\MQTransactionBundle\Tests\App;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;
