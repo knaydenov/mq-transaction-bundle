@@ -75,7 +75,7 @@ class SendMessagesCommand extends Command
             try {
                 $this
                     ->getProducer($message->getProducer())
-                    ->publish($message->getBody(), $message->getRoutingKey(), $message->getAdditionalProperties())
+                    ->publish($message->getBody(), $message->getRoutingKey(), ['message_id' => $message->getId()])
                 ;
 
                 $em->remove($message);

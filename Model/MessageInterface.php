@@ -5,6 +5,16 @@ namespace Kna\MQTransactionBundle\Model;
 interface MessageInterface
 {
     /**
+     * @return string
+     */
+    public function getId(): string;
+
+    /**
+     * @param string $id
+     */
+    public function setId(string $id): void;
+
+    /**
      * @return string|null
      */
     public function getProducer(): ?string;

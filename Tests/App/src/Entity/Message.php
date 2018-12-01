@@ -6,8 +6,5 @@ use Kna\MQTransactionBundle\Model\Message as BaseMessage;
 
 class Message extends BaseMessage
 {
-    /**
-     * @var string
-     */
-    protected $id;
+
 }

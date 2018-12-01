@@ -14,6 +14,9 @@ class DefaultConsumer implements ConsumerInterface
      */
     public function execute(AMQPMessage $msg)
     {
-        print $msg->getBody();
+        print_r([
+            'message' => $msg->getBody(),
+            'props' => $msg->get_properties()
+        ]);
     }
 }
