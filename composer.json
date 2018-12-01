@@ -5,6 +5,11 @@
     "autoload" : {
         "psr-4" : { "Kna\\MQTransactionBundle\\" : "" }
     },
+    "autoload-dev": {
+      "psr-4": {
+        "Kna\\MQTransactionBundle\\Tests\\App\\": "Tests/App/src/"
+      }
+    },
     "license": "MIT",
     "authors": [
         {
@@ -15,5 +20,8 @@
     "require": {
         "php": "^7.2",
         "symfony/framework-bundle": "^4.0"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^4.2"
     }
 }
