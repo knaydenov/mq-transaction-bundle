@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Kna\MQTransactionBundle\Model\MessageInterface;
 use OldSound\RabbitMqBundle\RabbitMq\ProducerInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,15 +17,28 @@ class SendMessagesCommand extends Command
 {
     use ContainerAwareTrait;
 
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
     public function __construct(
         ContainerInterface $container,
         ?string $name = null
     )
     {
         $this->container = $container;
+        $this->logger = new NullLogger();
         parent::__construct($name);
     }
 
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function setLogger(LoggerInterface $logger): void
+    {
+        $this->logger = $logger;
+    }
 
     protected function configure()
     {
@@ -40,14 +54,6 @@ class SendMessagesCommand extends Command
     protected function getDoctrine(): ManagerRegistry
     {
         return $this->container->get('doctrine');
-    }
-
-    /**
-     * @return LoggerInterface
-     */
-    protected function getLogger(): LoggerInterface
-    {
-        return $this->container->get('logger');
     }
 
     protected function getProducer(?string $name): ProducerInterface
@@ -78,7 +84,7 @@ class SendMessagesCommand extends Command
                 $em->remove($message);
                 $em->flush();
             } catch (\Exception $exception) {
-                $this->getLogger()->debug('Failed to send message', [
+                $this->logger->debug('Failed to send message', [
                     'message' => $exception->getMessage()
                 ]);
             }
