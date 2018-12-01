@@ -70,9 +70,7 @@ class SendMessagesCommand extends Command
         $em = $this->getDoctrine()->getManager();
         $messageClass = $this->container->getParameter('kna_mq_transaction.message.class');
 
-        $i = 0;
         $messages = $em->getRepository($messageClass)->findAll();
-
 
         foreach ($messages as /** @var MessageInterface $message */ $message) {
             try {
@@ -88,8 +86,6 @@ class SendMessagesCommand extends Command
                     'message' => $exception->getMessage()
                 ]);
             }
-
-            ++$i;
         }
     }
 }
