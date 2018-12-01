@@ -6,9 +6,3 @@ old_sound_rabbit_mq:
         default:
             connection: default
             exchange_options: { name: 'default', type: 'topic' }
-    consumers:
-        default:
-          connection:       default
-          queue_options:    { name: 'default'}
-          callback:         Kna\MQTransactionBundle\Tests\App\Consumer\DefaultConsumer
-

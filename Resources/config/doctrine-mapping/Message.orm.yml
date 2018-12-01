@@ -1,0 +1,21 @@
+Kna\MQTransactionBundle\Model\Message:
+  type: mappedSuperclass
+
+  fields:
+    producer:
+      type: string
+      nullable: true
+    contentType:
+      type: string
+      nullable: true
+    deliveryMode:
+      type: string
+      nullable: true
+    body:
+      type: text
+    routingKey:
+      type: string
+    additionalProperties:
+      type: json
+    headers:
+      type: json

@@ -22,7 +22,8 @@
         "symfony/framework-bundle": "^4.0",
         "php-amqplib/rabbitmq-bundle": "^1.14",
         "doctrine/doctrine-bundle": "^1.10",
-        "doctrine/orm": "^2.6"
+        "doctrine/orm": "^2.6",
+        "symfony/console": "^4.2"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^4.2"

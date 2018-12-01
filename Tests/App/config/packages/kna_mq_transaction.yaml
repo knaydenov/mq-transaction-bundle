@@ -1,0 +1,3 @@
+kna_mq_transaction:
+  message:
+    class: Kna\MQTransactionBundle\Tests\App\Entity\Message

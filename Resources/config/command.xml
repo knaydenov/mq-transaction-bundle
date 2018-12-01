@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="kna_hal.action_factory.class">Kna\HalBundle\Action\ActionFactory</parameter>
+    </parameters>
+
+    <services>
+        <service id="Kna\MQTransactionBundle\Command\SendMessagesCommand">
+            <argument type="service" id="service_container" />
+            <tag name="console.command" command="mq-transaction:send" />
+        </service>
+    </services>
+</container>
