@@ -1,6 +1,6 @@
 <?php
 
-use Kna\MQTransaction\Tests\App\Kernel;
+use Kna\MQTransactionBundle\Tests\App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
