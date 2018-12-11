@@ -46,7 +46,7 @@ class SendMessagesCommand extends Command
         $this
             ->setDescription('Sends messages')
             ->setHelp('Sends messages')
-            ->addOption('loop', null, InputOption::VALUE_NONE, 'Run in a loop?', false)
+            ->addOption('loop', null, InputOption::VALUE_NONE, 'Run in a loop?')
             ->addOption('delay', null, InputOption::VALUE_REQUIRED, 'Delay between ticks (sec)', 1)
         ;
     }
