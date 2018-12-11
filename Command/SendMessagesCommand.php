@@ -9,6 +9,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -45,6 +46,8 @@ class SendMessagesCommand extends Command
         $this
             ->setDescription('Sends messages')
             ->setHelp('Sends messages')
+            ->addOption('loop', null, InputOption::VALUE_NONE, 'Run in a loop?', false)
+            ->addOption('delay', null, InputOption::VALUE_REQUIRED, 'Delay between ticks (sec)', 1)
         ;
     }
 
@@ -69,22 +72,31 @@ class SendMessagesCommand extends Command
         $em = $this->getDoctrine()->getManager();
         $messageClass = $this->container->getParameter('kna_mq_transaction.message.class');
 
-        $messages = $em->getRepository($messageClass)->findAll();
+        do {
+            $messages = $em->getRepository($messageClass)->findAll();
 
-        foreach ($messages as /** @var MessageInterface $message */ $message) {
-            try {
-                $this
-                    ->getProducer($message->getProducer())
-                    ->publish($message->getBody(), $message->getRoutingKey(), ['message_id' => $message->getId()])
-                ;
+            foreach ($messages as /** @var MessageInterface $message */ $message) {
+                try {
+                    $this
+                        ->getProducer($message->getProducer())
+                        ->publish($message->getBody(), $message->getRoutingKey(), ['message_id' => $message->getId()])
+                    ;
 
-                $em->remove($message);
-                $em->flush();
-            } catch (\Exception $exception) {
-                $this->logger->debug('Failed to send message', [
-                    'message' => $exception->getMessage()
-                ]);
+                    $em->remove($message);
+                    $em->flush();
+                } catch (\Exception $exception) {
+                    $this->logger->debug('Failed to send message', [
+                        'message' => $exception->getMessage()
+                    ]);
+                }
             }
-        }
+            $em->clear();
+            gc_collect_cycles();
+
+            if ($input->getOption('loop')) {
+                sleep($input->getOption('delay'));
+            }
+
+        } while ($input->getOption('loop'));
     }
 }
