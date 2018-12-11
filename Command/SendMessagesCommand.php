@@ -85,7 +85,7 @@ class SendMessagesCommand extends Command
                     $em->remove($message);
                     $em->flush();
                 } catch (\Exception $exception) {
-                    $this->logger->debug('Failed to send message', [
+                    $this->logger->error('Failed to send message', [
                         'message' => $exception->getMessage()
                     ]);
                 }
